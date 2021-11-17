@@ -13,5 +13,5 @@ def main(argv):
 
 
 if __name__ == '__main__':
-    #main(sys.argv[1:])
-    main(["B5.json", "Calls_d.csv", "out.csv"])
+    main(sys.argv[1:])
+    # main(["B5.json", "Calls_d.csv", "out.csv"])

@@ -6,7 +6,9 @@ from AllocatedCall import AllocatedCall
 from Building import Building
 from Elevator import Elevator
 
-
+# This algorithem is allocating elevators to a bulding.
+#We chose to do it by allocating firstly the foregin calls between all the elevators and after that allocating
+# the rest calls between the number of elevators.
 class Offline:
     def __init__(self, building, calls_file, output_file):
         self.building = building
@@ -21,7 +23,8 @@ class Offline:
         self.parrallel_allocate_range()
         self.calls["Index"] = self.elevators_allocated
         self.get_output_file()
-
+# after allocating the foregin elevators we are checking the parrallel calls and allocating the elevators
+# between this calls
     def parrallel_allocate_range(self):
         counter = 0
         for index, call in self.not_allocated_calls.iterrows():  # for each call check if can assign to some elev as foreign call
@@ -38,7 +41,7 @@ class Offline:
             if self.elevators_allocated[index] == -1:
                 self.elevators_allocated[index] = counter % len(self.building.elevators)
                 counter += 1
-
+# allocating the foreign calls between the the elevators.
     def foreign_allocate(self):
         allocated = []
         for index, call in self.calls.iterrows():  # for each call check if can assign to some elev as foreign call
